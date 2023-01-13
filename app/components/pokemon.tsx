@@ -4,7 +4,7 @@ import type { SmallPokemon } from "~/entities/pokemon";
 
 export function Pokemon({ id, img, name, url }: SmallPokemon) {
   return (
-    <Card css={{ w: "100%", h: "400px" }}>
+    <Card isHoverable css={{ w: "100%", h: "400px" }}>
       <Card.Body css={{ p: 0 }}>
         <Card.Image
           src={img}
