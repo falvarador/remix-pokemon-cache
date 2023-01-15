@@ -1,51 +1,26 @@
-import { Button, Card, Col, Row, Text } from "@nextui-org/react";
+import { Link } from "@remix-run/react";
 
-import type { SmallPokemon } from "~/entities/pokemon";
+import type { SmallPokemon } from "~/entities";
 
-export function Pokemon({ id, img, name, url }: SmallPokemon) {
+export function Pokemon({ img, name, url }: SmallPokemon) {
   return (
-    <Card isHoverable css={{ w: "100%", h: "400px" }}>
-      <Card.Body css={{ p: 0 }}>
-        <Card.Image
-          src={img}
-          width="100%"
-          height="100%"
-          objectFit="cover"
-          alt="Card example background"
-        />
-      </Card.Body>
-      <Card.Footer
-        isBlurred
-        css={{
-          position: "absolute",
-          bgBlur: "#ffffff66",
-          borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
-          bottom: 0,
-          zIndex: 1,
-        }}
-      >
-        <Row>
-          <Col>
-            <Text h3 color="black" transform="uppercase">
-              {name}
-            </Text>
-          </Col>
-          <Col>
-            <Row justify="flex-end">
-              <Button flat auto rounded color="secondary">
-                <Text
-                  css={{ color: "inherit" }}
-                  size={12}
-                  weight="bold"
-                  transform="uppercase"
-                >
-                  More info
-                </Text>
-              </Button>
-            </Row>
-          </Col>
-        </Row>
-      </Card.Footer>
-    </Card>
+    <article className="flex w-full flex-col items-center rounded-lg bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
+      <img
+        className="h-60 w-60 rounded rounded-t-lg object-fill p-8"
+        src={img}
+        alt={name}
+      />
+      <aside className="flex w-full flex-col place-content-center gap-4 px-5 pb-5">
+        <h5 className="text-center text-3xl font-bold uppercase text-gray-900 dark:text-white">
+          {name}
+        </h5>
+        <Link
+          to={url}
+          className="inline-flex w-full items-center justify-center rounded-lg bg-gray-800 px-4 py-2.5 text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 sm:w-auto"
+        >
+          <span className="text-left text-sm font-semibold">More Info</span>
+        </Link>
+      </aside>
+    </article>
   );
 }

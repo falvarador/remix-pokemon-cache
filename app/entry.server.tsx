@@ -3,10 +3,6 @@ import { RemixServer } from "@remix-run/react";
 
 import { renderToString } from "react-dom/server";
 
-import { CssBaseline } from "@nextui-org/react";
-
-const styles = CssBaseline.flush();
-
 export default function handleRequest(
   request: Request,
   responseStatusCode: number,
@@ -15,9 +11,6 @@ export default function handleRequest(
 ) {
   const markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />
-  ).replace(
-    /<\/head>/,
-    `<style id="stitches">${styles.props.dangerouslySetInnerHTML.__html}</style></head>`
   );
 
   responseHeaders.set("Content-Type", "text/html");

@@ -8,9 +8,11 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import { NextUIProvider } from "@nextui-org/react";
+import styles from "./styles/app.css";
 
-import { darkTheme } from "./themes";
+export function links() {
+  return [{ rel: "stylesheet", href: styles }];
+}
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -26,12 +28,10 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <NextUIProvider theme={darkTheme}>
-          <Outlet />
-          <ScrollRestoration />
-          <Scripts />
-          <LiveReload />
-        </NextUIProvider>
+        <Outlet />
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
       </body>
     </html>
   );

@@ -2,8 +2,6 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 
-import { Grid } from "@nextui-org/react";
-
 import { Pokemon } from "~/components";
 import { pokemonApi } from "~/services";
 import type { PokemonListResponse, SmallPokemon } from "~/entities";
@@ -51,18 +49,16 @@ export default function Index() {
   const { pokemons } = useLoaderData<LoaderData>();
 
   return (
-    <Grid.Container gap={2} justify="flex-start">
+    <section className="grid grid-cols-1 gap-2 p-2 md:grid-cols-2 lg:grid-cols-3">
       {pokemons.map((pokemon) => (
-        <Grid xs={6} sm={3} key={pokemon.id}>
-          <Pokemon
-            key={pokemon.id}
-            id={pokemon.id}
-            img={pokemon.img}
-            name={pokemon.name}
-            url={pokemon.url}
-          ></Pokemon>
-        </Grid>
+        <Pokemon
+          key={pokemon.id}
+          id={pokemon.id}
+          img={pokemon.img}
+          name={pokemon.name}
+          url={pokemon.url}
+        ></Pokemon>
       ))}
-    </Grid.Container>
+    </section>
   );
 }
