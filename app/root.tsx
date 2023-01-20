@@ -8,6 +8,8 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import { Navbar } from "./components";
+
 import styles from "./styles/app.css";
 
 export function links() {
@@ -28,7 +30,10 @@ export default function App() {
         <Links />
       </head>
       <body className=" bg-white dark:bg-gray-900">
-        <Outlet />
+        <Navbar brand="Pokemon App" />
+        <main className="container mx-auto">
+          <Outlet />
+        </main>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

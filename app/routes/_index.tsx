@@ -42,10 +42,10 @@ export const loader: LoaderFunction = async () => {
     }.svg`,
   }));
 
-  return json<LoaderData>({ pokemon: "Pikachu", pokemons });
+  return json({ pokemon: "Pikachu", pokemons });
 };
 
-export default function Index() {
+export default function Page() {
   const { pokemons } = useLoaderData<LoaderData>();
 
   return (
@@ -56,7 +56,7 @@ export default function Index() {
           id={pokemon.id}
           img={pokemon.img}
           name={pokemon.name}
-          url={pokemon.url}
+          url={`/pokemons/${pokemon.name}`}
         ></Pokemon>
       ))}
     </section>
