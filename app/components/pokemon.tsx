@@ -9,6 +9,8 @@ export function Pokemon({ img, name, url }: SmallPokemon) {
         className="h-60 w-60 rounded rounded-t-lg object-fill p-8"
         src={img}
         alt={name}
+        loading="lazy"
+        decoding="async"
       />
       <aside className="flex w-full flex-col place-content-center gap-4 px-5 pb-5">
         <h5 className="text-center text-3xl font-bold uppercase text-gray-900 dark:text-white">

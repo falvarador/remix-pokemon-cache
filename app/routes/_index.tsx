@@ -1,9 +1,11 @@
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Suspense } from "react";
+
+import { Await, useLoaderData } from "@remix-run/react";
+import { defer } from "@remix-run/node";
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 
-import { Pokemon } from "~/components";
 import { pokemonApi } from "~/services";
+import { PokemonList, Skeleton } from "~/components";
 import type { PokemonListResponse, SmallPokemon } from "~/entities";
 
 type LoaderData = {
@@ -42,7 +44,7 @@ export const loader: LoaderFunction = async () => {
     }.svg`,
   }));
 
-  return json({ pokemon: "Pikachu", pokemons });
+  return defer({ pokemon: "Pikachu", pokemons });
 };
 
 export default function Page() {
@@ -50,15 +52,12 @@ export default function Page() {
 
   return (
     <section className="grid grid-cols-1 gap-2 p-2 md:grid-cols-2 lg:grid-cols-3">
-      {pokemons.map((pokemon) => (
-        <Pokemon
-          key={pokemon.id}
-          id={pokemon.id}
-          img={pokemon.img}
-          name={pokemon.name}
-          url={`/pokemons/${pokemon.name}`}
-        ></Pokemon>
-      ))}
+      {/* <Suspense fallback={<Skeleton />}>
+        <Await resolve={pokemons}>
+          {(pokemons) => <PokemonList pokemons={pokemons} />}
+        </Await>
+      </Suspense> */}
+      <Skeleton />
     </section>
   );
 }
